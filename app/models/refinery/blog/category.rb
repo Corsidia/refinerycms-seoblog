@@ -7,8 +7,7 @@ module Refinery
 
       friendly_id :title, :use => [:slugged, :globalize]
 
-      has_many :categorizations, :dependent => :destroy, :foreign_key => :blog_category_id
-      has_many :posts, :through => :categorizations, :source => :blog_post
+      has_many :posts
 
       validates :title, :presence => true, :uniqueness => true
 
