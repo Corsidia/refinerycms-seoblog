@@ -25,18 +25,13 @@ class CreateBlogStructure < ActiveRecord::Migration
     add_index :refinery_blog_comments, :blog_post_id
 
     create_table :refinery_blog_categories do |t|
+      t.integer :blog_post_id
       t.string :title
       t.timestamps
     end
 
     add_index :refinery_blog_categories, :id
-
-    create_table :refinery_blog_categories_blog_posts do |t|
-      t.integer :blog_category_id
-      t.integer :blog_post_id
-    end
-
-    add_index :refinery_blog_categories_blog_posts, [:blog_category_id, :blog_post_id], :name => 'index_blog_categories_blog_posts_on_bc_and_bp'
+    add_index :refinery_blog_categories, :blog_post_id
   end
 
   def down
@@ -47,7 +42,6 @@ class CreateBlogStructure < ActiveRecord::Migration
     drop_table :refinery_blog_posts
     drop_table :refinery_blog_comments
     drop_table :refinery_blog_categories
-    drop_table :refinery_blog_categories_blog_posts
   end
 
 end
