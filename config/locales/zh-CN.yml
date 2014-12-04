@@ -1,7 +1,7 @@
 zh-CN:
   refinery:
     plugins:
-      refinerycms_blog:
+      refinerycms_seoblog:
         title: 博客
     blog:
       admin:
@@ -36,15 +36,15 @@ zh-CN:
         posts:
           form:
             toggle_advanced_options: 点击进入标签详解设置和菜单选项
-            published_at: 公布日期 
+            published_at: 公布日期
             custom_url: 自设网址
-            custom_url_help: 由此字句生成网志发帖，而非从标题 
+            custom_url_help: 由此字句生成网志发帖，而非从标题
             source_url: 来源网站
             source_url_help: 记录发帖来源
             source_url_title: 网址来源标题
-            source_url_title_help: 发帖的来源网址标题 
+            source_url_title_help: 发帖的来源网址标题
             author: 作者
-            author_help: 设定此用者成为作者 
+            author_help: 设定此用者成为作者
             copy_body: 复制发帖内容至前言
             copy_body_help: '复制发帖内容至前言，前言留白让系统自动生成前言。'
           index:
@@ -140,7 +140,7 @@ zh-CN:
 
   activerecord:
     models:
-      refinery/blog/category: 分类 
+      refinery/blog/category: 分类
       refinery/blog/comment: 评论
       refinery/blog/post: 博文发帖
     attributes:
@@ -154,4 +154,3 @@ zh-CN:
         title: Title
         body: 标题
         teaser: 前言
-        

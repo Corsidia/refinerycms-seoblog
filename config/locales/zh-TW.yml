@@ -1,7 +1,7 @@
 zh-TW:
   refinery:
     plugins:
-      refinerycms_blog:
+      refinerycms_seoblog:
         title: 博客
     blog:
       admin:

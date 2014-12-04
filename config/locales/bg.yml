@@ -1,7 +1,7 @@
 bg:
   refinery:
     plugins:
-      refinerycms_blog:
+      refinerycms_seoblog:
         title: Блог
     blog:
       admin:

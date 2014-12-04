@@ -5,10 +5,10 @@ module Refinery
 
       isolate_namespace Refinery::Blog
 
-      initializer "register refinerycms_blog plugin" do
+      initializer "register refinerycms_seoblog plugin" do
         Refinery::Plugin.register do |plugin|
           plugin.pathname = root
-          plugin.name = "refinerycms_blog"
+          plugin.name = "refinerycms_seoblog"
           plugin.url = proc { Refinery::Core::Engine.routes.url_helpers.blog_admin_posts_path }
           plugin.menu_match = %r{refinery/blog/?(posts|comments|categories)?}
         end

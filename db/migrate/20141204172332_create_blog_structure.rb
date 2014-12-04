@@ -35,7 +35,7 @@ class CreateBlogStructure < ActiveRecord::Migration
   end
 
   def down
-    Refinery::UserPlugin.destroy_all({:name => "refinerycms_blog"}) if defined?(Refinery::UserPlugin)
+    Refinery::UserPlugin.destroy_all({:name => "refinerycms_seoblog"}) if defined?(Refinery::UserPlugin)
 
     Refinery::Page.delete_all({:link_url => "/blog"}) if defined?(Refinery::Page)
 

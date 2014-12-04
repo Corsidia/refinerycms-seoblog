@@ -1,7 +1,7 @@
 ja:
   refinery:
     plugins:
-      refinerycms_blog:
+      refinerycms_seoblog:
         title: ブログ
     blog:
       admin:

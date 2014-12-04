@@ -6,7 +6,7 @@ module Refinery
       describe CommentsController, type: :controller do
         refinery_login_with :refinery_user
         before do
-          logged_in_user.plugins = logged_in_user.plugins | %w(refinerycms_blog)
+          logged_in_user.plugins = logged_in_user.plugins | %w(refinerycms_seoblog)
         end
 
         describe "#index" do
