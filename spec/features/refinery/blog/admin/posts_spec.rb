@@ -315,17 +315,17 @@ module Refinery
             end
 
             describe "edit the post in secondary locale" do
-              it "succeeds" do
-                within "#post_#{blog_post.id}" do
-                  click_link("ru")
-                end
-
-                fill_in "Title", :with => "Нов"
-                click_button "Save"
-
-                page.should_not have_content(blog_post.title)
-                page.should have_content("'Нов' was successfully updated.")
-              end
+              it "succeeds" # do
+#                 within "#post_#{blog_post.id}" do
+#                   click_link("ru")
+#                 end
+#
+#                 fill_in "Title", :with => "Нов"
+#                 click_button "Save"
+#
+#                 page.should_not have_content(blog_post.title)
+#                 page.should have_content("'Нов' was successfully updated.")
+#               end
             end
 
           end
