@@ -1,13 +1,13 @@
 # Encoding: UTF-8
 
 Gem::Specification.new do |s|
-  s.name              = %q{refinerycms-blog}
-  s.version           = %q{3.0.0}
-  s.description       = %q{A really straightforward open source Ruby on Rails blog engine designed for integration with Refinery CMS.}
-  s.summary           = %q{Ruby on Rails blogging engine for Refinery CMS.}
-  s.email             = %q{info@refinerycms.com}
-  s.homepage          = %q{http://refinerycms.com/blog}
-  s.authors           = ['Philip Arndt', 'Uģis Ozols', 'Joe Sak']
+  s.name              = %q{refinerycms-seoblog}
+  s.version           = %q{0.0.2}
+  s.description       = %q{Just another straightforward open source Ruby on Rails blog engine designed for integration with Refinery CMS.}
+  s.summary           = %q{SEO oriented Ruby on Rails blogging engine for Refinery CMS.}
+  # s.email             = %q{info@refinerycms.com}
+  # s.homepage          = %q{http://refinerycms.com/blog}
+  s.authors           = ['Philip Arndt', 'Uģis Ozols', 'Joe Sak', 'Duccio Armenise']
   s.require_paths     = %w(lib)
   s.license           = %q{MIT}
 
