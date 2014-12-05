@@ -43,25 +43,24 @@
   <%= render '/refinery/admin/form_advanced_options_menu', :f => f %>
 
   <div class='field'>
+    <span class='label_with_help'>
+      <%= f.label :category, t('.category') %>
+      <%= refinery_help_tag t('.category_help') %>
+      <br/>
+      <%= f.collection_select :category, @categories, :id, :title %>
+    </span>
+  </div>
+
+  <div class='field'>
     <%= f.label :tag_list, t('refinery.blog.shared.tags.title') -%>
     <%= f.text_field :tag_list, :class => 'larger' -%>
   </div>
 
+
+
   <div id='more_options' style="display:none;">
     <div class="hemisquare">
-      <h3><%= t('title', :scope => 'refinery.blog.admin.submenu.categories') %></h3>
-      <ul class='blog_categories'>
-        <% @categories.each do |category| %>
-          <li>
-             <%= check_box_tag 'post[category_ids][]', category.id,
-                               @post.categories.include?(category),
-                               :id => (id="post_category_ids_#{category.id}") %>
-             <%= label_tag 'post[category_ids][]', category.title,
-                           :class => 'stripped',
-                           :for => id %>
-          </li>
-        <% end %>
-      </ul>
+
       <h3><%= t('.published_at') %></h3>
       <%= f.datetime_select :published_at %>
 
