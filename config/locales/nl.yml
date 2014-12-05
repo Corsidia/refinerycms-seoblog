@@ -53,6 +53,8 @@ nl:
             example: "Voer uw e-mailadres(sen) in, bijvoorbeeld: jack@work.com, jill@office.com"
             updated: 'De ontvanger(s) van notificaties is/zijn gewijzigd naar "%{recipients}"'
         submenu:
+          category:
+            title: Category
           categories:
             title: Categorieën
             manage: Beheren

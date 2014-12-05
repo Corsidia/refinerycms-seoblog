@@ -64,6 +64,8 @@ ja:
             example: "複数のメールアドを登録することが出来ます。入力例: jack@work.com, jill@office.com"
             updated: '通知受信者の「%{recipients}」に通知が送信されました。'
         submenu:
+          category:
+            title: Category
           categories:
             title: カテゴリ
             manage: 管理

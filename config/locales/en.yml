@@ -37,6 +37,8 @@ en:
           form:
             toggle_advanced_options: Click to access meta tag settings and menu options
             published_at: Publish Date
+            category: Category
+            category_help: A Post must have one Category
             custom_url: Custom Url
             custom_url_help: Generate the url for the blog post from this text instead of the title.
             source_url: Source Url
@@ -64,6 +66,8 @@ en:
             example: "Enter your email address(es) like: jack@work.com, jill@office.com"
             updated: 'Notification recipients have been set to "%{recipients}"'
         submenu:
+          category:
+            title: Category
           categories:
             title: Categories
             manage: Manage

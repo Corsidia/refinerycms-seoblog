@@ -63,6 +63,8 @@ sk:
             example: "Zadaj tvoju emailovú adresu(y) ako napríklad: jack@work.com, jill@office.com"
             updated: 'Zoznam príjemcov notifikácií: "%{recipients}"'
         submenu:
+          category:
+            title: Category
           categories:
             title: Kategórie
             manage: Spravovať

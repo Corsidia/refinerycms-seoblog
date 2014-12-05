@@ -64,6 +64,8 @@ fr:
             example: "Entrez une/des adresse(s) e-mail comme : jack@work.com, jill@office.com"
             updated: 'Les destinataires des notifications sont définis : "%{recipients}"'
         submenu:
+          category:
+            title: Category
           categories:
             title: Catégories
             manage: Gérer

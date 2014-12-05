@@ -61,6 +61,8 @@ ru:
             example: "Введите адреса эл. почты, например: jack@work.com, jill@office.com"
             updated: 'Получателем уведомлений является "%{recipients}"'
         submenu:
+          category:
+            title: Category
           categories:
             title: Категории
             manage: Редактировать категории

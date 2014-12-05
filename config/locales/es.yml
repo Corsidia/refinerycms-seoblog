@@ -53,6 +53,8 @@ es:
             example: 'Si deseas que las notificaciones lleguen a más de una cuenta, puedes usar comas para separarlas (pepe@direccionpersonal.com, jose@direccionlaboral.com, ...)'
             updated: 'Las notifiaciones han sido enviadas a "%{recipients}"'
         submenu:
+          category:
+            title: Category
           categories:
             title: Categorías
             manage: Gestionar

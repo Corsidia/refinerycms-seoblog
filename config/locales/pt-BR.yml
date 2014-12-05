@@ -64,6 +64,8 @@ pt-BR:
             example: 'Entre com o(s) seu(s) endereço(s) de email, como: jack@work.com, jill@office.com'
             updated: 'As notificações foram enviadas para "%{recipients}"'
         submenu:
+          category:
+            title: Category
           categories:
             title: Categorias
             manage: Gerenciar

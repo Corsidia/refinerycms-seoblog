@@ -64,6 +64,8 @@ nb:
             example: "Skriv inn epostadressen(e) slik: ola@jobb.no, andrea@kontor.no"
             updated: 'Mottagere av beskjed om kommentarer er satt til "%{recipients}"'
         submenu:
+          category:
+            title: Category
           categories:
             title: Kategorier
             manage: Administrér

@@ -53,6 +53,8 @@ pl:
             example: 'Podaj adresy e-mail oddzielone przecinkiem, np: jack@work.com, jill@office.com'
             updated: 'Powiadomienia będą wysyłane do "%{recipients}"'
         submenu:
+          category:
+            title: Category
           categories:
             title: Kategorie
             manage: Zarządzaj kategoriami

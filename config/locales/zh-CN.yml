@@ -63,6 +63,8 @@ zh-CN:
             example: "输入您的邮件地址，如: jack@work.com, jill@office.com"
             updated: '通知收件人已被设为 "%{recipients}"'
         submenu:
+          category:
+            title: Category
           categories:
             title: 分类
             manage: 管理

@@ -64,6 +64,8 @@ de:
             example: 'Geben Sie Ihre E-Mail-Adresse(n) wie folgt ein: jack@work.com, jill@office.com'
             updated: 'Empfänger für Benachrichtigungen wurden auf "%{recipients}" gesetzt'
         submenu:
+          category:
+            title: Category
           categories:
             title: Kategorien
             manage: Verwalten

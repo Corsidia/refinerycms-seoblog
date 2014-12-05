@@ -63,6 +63,8 @@ zh-TW:
             example: "輸入您的郵件地址，如: jack@work.com, jill@office.com"
             updated: '通知收件人已被設為 "%{recipients}"'
         submenu:
+          category:
+            title: Category
           categories:
             title: 分類
             manage: 管理

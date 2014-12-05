@@ -53,6 +53,8 @@ cs:
             example: "Zadej tvou emailovou adresu(y) jako například: jack@work.com, jill@office.com"
             updated: 'Seznam příjemců notifikací "%{recipients}"'
         submenu:
+          category:
+            title: Category
           categories:
             title: Kategorie
             manage: Spravovat

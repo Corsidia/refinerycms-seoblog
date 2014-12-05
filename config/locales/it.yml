@@ -37,6 +37,8 @@ it:
           form:
             toggle_advanced_options: Clicca per accedere alle impostationi dei meta tag e del menu
             published_at: Data di Pubblicazione
+            category: Categoria
+            category_help: Il Post deve avere una e una sola Categoria
             custom_url: Url personalizzato
             custom_url_help: Puoi scegliere un url specifico per questo articolo. Lasciando questo campo vuoto verrà utilizzato il titolo.
             copy_body: Copia il testo dell'articolo nel teaser
@@ -57,6 +59,8 @@ it:
             example: "Inserisci il tuo indirizzo email. È possibile insierire più indirizzi separati dalla virgola. Es: jack@work.com, jill@office.com"
             updated: 'I destinatari delle notifiche sono stati impostati "%{recipients}"'
         submenu:
+          category:
+            title: Category
           categories:
             title: Categorie
             manage: Gestione categorie

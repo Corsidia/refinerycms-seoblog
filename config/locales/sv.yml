@@ -64,6 +64,8 @@ sv:
             example: "Lägg till epostadress(er) i detta format: kalle@home.se, pelle@work.com"
             updated: 'Notiser har blivit skickade till: "%{recipients}"'
         submenu:
+          category:
+            title: Category
           categories:
             title: Kategorier
             manage: Hantera

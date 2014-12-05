@@ -57,6 +57,8 @@ bg:
             example: "Въведете адреса(ите) на Вашата е-поща. Например: jack@work.com, jill@office.com"
             updated: 'Уведомления бяха изпратени до "%{recipients}"'
         submenu:
+          category:
+            title: Category
           categories:
             title: Категории
             manage: Управление
