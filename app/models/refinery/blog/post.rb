@@ -15,18 +15,21 @@ module Refinery
       acts_as_taggable
 
       belongs_to :author, proc { readonly(true) }, :class_name => Refinery::Blog.user_class.to_s, :foreign_key => :user_id
-      belongs_to :category
+      belongs_to :category, :class_name => 'Refinery::Blog::Category', :foreign_key => :blog_category_id, inverse_of: :posts
+
       has_many :comments, :dependent => :destroy, :foreign_key => :blog_post_id
 
 
       validates :title, :presence => true, :uniqueness => true
       validates :body,  :presence => true
+      validates :category, :presence => true
       validates :published_at, :author, :presence => true
       validates :source_url, :url => { :if => 'Refinery::Blog.validate_source_url',
                                       :update => true,
                                       :allow_nil => true,
                                       :allow_blank => true,
                                       :verify => [:resolve_redirects]}
+
 
       class Translation
         is_seo_meta
