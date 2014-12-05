@@ -5,9 +5,9 @@ module Refinery
       protected
 
         def find_blog_post
-          unless (@post = Refinery::Blog::Post.with_globalize.friendly.find(params[:id])).try(:live?)
+          unless (@post = Refinery::Blog::Post.with_globalize.friendly.find(params[:slug])).try(:live?)
             if refinery_user? and current_refinery_user.authorized_plugins.include?("refinerycms_seoblog")
-              @post = Refinery::Blog::Post.friendly.find(params[:id])
+              @post = Refinery::Blog::Post.friendly.find(params[:slug])
             else
               error_404
             end

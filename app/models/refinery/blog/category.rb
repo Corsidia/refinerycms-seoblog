@@ -10,6 +10,7 @@ module Refinery
       has_many :posts, class_name: "Refinery::Blog::Post", foreign_key: :blog_category_id
 
       validates :title, :presence => true, :uniqueness => true
+      validates :slug, :presence => true
 
       def self.translated
         with_translations(::Globalize.locale)

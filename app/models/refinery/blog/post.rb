@@ -23,6 +23,7 @@ module Refinery
       validates :title, :presence => true, :uniqueness => true
       validates :body,  :presence => true
       validates :category, :presence => true
+      validates :slug, :presence => true
       validates :published_at, :author, :presence => true
       validates :source_url, :url => { :if => 'Refinery::Blog.validate_source_url',
                                       :update => true,
