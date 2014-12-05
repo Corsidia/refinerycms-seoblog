@@ -7,7 +7,7 @@ module Refinery
 
       friendly_id :title, :use => [:slugged, :globalize]
 
-      has_many :posts
+      has_many :posts, class_name: "Refinery::Blog::Post", foreign_key: :blog_category_id
 
       validates :title, :presence => true, :uniqueness => true
 
