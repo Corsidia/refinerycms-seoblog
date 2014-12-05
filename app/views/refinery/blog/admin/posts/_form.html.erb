@@ -47,7 +47,7 @@
       <%= f.label :category, t('.category') %>
       <%= refinery_help_tag t('.category_help') %>
       <br/>
-      <%= f.collection_select :category, @categories, :id, :title %>
+      <%= f.collection_select :blog_category_id, @categories, :id, :title %>
     </span>
   </div>
 

@@ -80,7 +80,7 @@ module Refinery
         def post_params
           params.require(:post).permit(:title, :body, :custom_teaser, :tag_list,
             :draft, :published_at, :custom_url, :user_id, :browser_title,
-            :meta_description, :source_url, :source_url_title, :category_ids => [])
+            :meta_description, :source_url, :source_url_title, :blog_category_id)
         end
 
       protected
