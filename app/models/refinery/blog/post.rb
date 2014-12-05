@@ -41,6 +41,10 @@ module Refinery
         custom_url_changed? || title_changed?
       end
 
+      def category_slug
+        category.slug
+      end
+
       # Delegate SEO Attributes to globalize translation
       seo_fields = ::SeoMeta.attributes.keys.map{|a| [a, :"#{a}="]}.flatten
       delegate(*(seo_fields << {:to => :translation}))

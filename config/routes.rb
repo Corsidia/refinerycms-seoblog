@@ -1,8 +1,8 @@
 Refinery::Core::Engine.routes.draw do
   namespace :blog, :path => Refinery::Blog.page_url do
     root :to => "posts#index"
-    resources :posts, :only => [:show]
-
+    # resources :posts, :only => [:show]
+    get ':category_slug/:id', :to => 'posts#show', :as => 'post'
     get 'feed.rss', :to => 'posts#index', :as => 'rss_feed', :defaults => {:format => "rss"}
     get 'categories/:id', :to => 'categories#show', :as => 'category'
     post ':id/comments', :to => 'posts#comment', :as => 'comments'
