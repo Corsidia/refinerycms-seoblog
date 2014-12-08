@@ -46,10 +46,8 @@ module Refinery
                 # hidden and capybara refuses to fill in elements it can't see
                 page.evaluate_script("WYMeditor.INSTANCES[0].html('<p>And I love it</p>')")
                 click_link "toggle_advanced_options"
-                page.should have_css '.blog_categories'
-                page.should have_css "#post_category_ids_#{blog_category.id}"
-                check blog_category.title
-                find(:css, "#post_category_ids_#{blog_category.id}").checked?.should be_truthy
+                select blog_category.title
+
                 click_button "Save"
                 page.should have_content("was successfully added.")
               end
@@ -63,8 +61,7 @@ module Refinery
               end
 
               it "should save categories" do
-                subject.class.last.categories.count.should eq(1)
-                subject.class.last.categories.first.title.should eq(blog_category.title)
+                subject.class.last.category.title.should eq(blog_category.title)
               end
             end
 
@@ -109,11 +106,11 @@ module Refinery
                 click_link("Edit this blog post")
                 current_path.should == refinery.edit_blog_admin_post_path(blog_post)
 
-                fill_in "post_title", :with => "hax0r"
+                fill_in "post_title", :with => "Primo"
                 click_button "Save"
 
                 page.should_not have_content(blog_post.title)
-                page.should have_content("'hax0r' was successfully updated.")
+                page.should have_content("'Primo' was successfully updated.")
               end
             end
 
@@ -131,19 +128,9 @@ module Refinery
               it "redirects to blog post in the frontend" do
                 click_link "View this blog post live"
 
-                current_path.should == refinery.blog_post_path(blog_post)
+                current_path.should == refinery.blog_post_path(blog_post.category, blog_post)
                 page.should have_content(blog_post.title)
               end
-            end
-          end
-
-          context "when categorized post" do
-            it "won't show up in the list" do
-              blog_post.categories << blog_category
-              blog_post.save!
-
-              visit refinery.uncategorized_blog_admin_posts_path
-              page.should_not have_content(blog_post.title)
             end
           end
         end
@@ -178,9 +165,9 @@ module Refinery
         context "with translations" do
           before do
             Globalize.locale = :en
-            Refinery::I18n.stub(:frontend_locales).and_return([:en, :ru])
+            Refinery::I18n.stub(:frontend_locales).and_return([:en, :it])
             blog_page = FactoryGirl.create(:page, :link_url => "/blog", :title => "Blog")
-            Globalize.with_locale(:ru) do
+            Globalize.with_locale(:it) do
               blog_page.title = 'блог'
               blog_page.save
             end
@@ -214,7 +201,7 @@ module Refinery
             end
 
             it "does not show up in blog page for secondary locale" do
-              visit refinery.blog_root_path(:locale => :ru)
+              visit refinery.blog_root_path(:locale => :it)
               page.should_not have_selector("#post_#{@p.id}")
             end
 
@@ -222,17 +209,17 @@ module Refinery
 
           describe "add a blog post with title only for secondary locale" do
 
-            let(:ru_page_title) { 'Новости' }
+            let(:it_page_title) { 'Prova' }
 
             before do
               click_link "Create new post"
               within "#switch_locale_picker" do
-                click_link "ru"
+                click_link "it"
               end
-              fill_in "Title", :with => ru_page_title
+              fill_in "Title", :with => it_page_title
               fill_in "post_body", :with => "One post in my blog"
               click_button "Save"
-              @p = Refinery::Blog::Post.find_by_title("Новости")
+              @p = Refinery::Blog::Post.find_by_title(it_page_title)
             end
 
             it "succeeds" do
@@ -242,13 +229,13 @@ module Refinery
 
             it "shows title in secondary locale" do
               within "#post_#{@p.id}" do
-                page.should have_content(ru_page_title)
+                page.should have_content(it_page_title)
               end
             end
 
             it "shows locale flag for post" do
               within "#post_#{@p.id}" do
-                page.should have_css("img[src='/assets/refinery/icons/flags/ru.png']")
+                page.should have_css("img[src='/assets/refinery/icons/flags/it.png']")
               end
             end
 
@@ -264,7 +251,7 @@ module Refinery
             end
 
             it "shows up in blog page for secondary locale" do
-              visit refinery.blog_root_path(:locale => :ru)
+              visit refinery.blog_root_path(:locale => :it)
               page.should have_selector("#post_#{@p.id}")
             end
 
@@ -274,8 +261,8 @@ module Refinery
 
             let!(:blog_post) do
               _blog_post = Globalize.with_locale(:en) { FactoryGirl.create(:blog_post, :title => 'First Post') }
-              Globalize.with_locale(:ru) do
-                _blog_post.title = 'Домашняя страница'
+              Globalize.with_locale(:it) do
+                _blog_post.title = 'Prova Post Titolo'
                 _blog_post.save
               end
               _blog_post
@@ -288,7 +275,7 @@ module Refinery
             it "shows both locale flags for post" do
               within "#post_#{blog_post.id}" do
                 page.should have_css("img[src='/assets/refinery/icons/flags/en.png']")
-                page.should have_css("img[src='/assets/refinery/icons/flags/ru.png']")
+                page.should have_css("img[src='/assets/refinery/icons/flags/it.png']")
               end
             end
 
@@ -308,17 +295,17 @@ module Refinery
             end
 
             describe "edit the post in secondary locale" do
-              it "succeeds" # do
-#                 within "#post_#{blog_post.id}" do
-#                   click_link("ru")
-#                 end
-#
-#                 fill_in "Title", :with => "Нов"
-#                 click_button "Save"
-#
-#                 page.should_not have_content(blog_post.title)
-#                 page.should have_content("'Нов' was successfully updated.")
-#               end
+              it "succeeds" do
+                within "#post_#{blog_post.id}" do
+                  click_link("it")
+                end
+
+                fill_in "Title", :with => "Prova"
+                click_button "Save"
+
+                page.should_not have_content(blog_post.title)
+                page.should have_content("'Prova' was successfully updated.")
+              end
             end
 
           end

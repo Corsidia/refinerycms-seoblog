@@ -21,9 +21,9 @@ describe "Categories admin", type: :feature do
 
   context "with translations" do
     before do
-      Refinery::I18n.stub(:frontend_locales).and_return([:en, :ru])
+      Refinery::I18n.stub(:frontend_locales).and_return([:en, :it])
       blog_page = Globalize.with_locale(:en) { FactoryGirl.create(:page, :link_url => "/blog", :title => "Blog") }
-      Globalize.with_locale(:ru) do
+      Globalize.with_locale(:it) do
         blog_page.title = 'блог'
         blog_page.save
       end
@@ -59,7 +59,7 @@ describe "Categories admin", type: :feature do
       end
 
       it "does not show up in blog page for secondary locale" do
-        visit refinery.blog_root_path(:locale => :ru)
+        visit refinery.blog_root_path(:locale => :it)
         page.should_not have_selector('#categories')
       end
 
@@ -67,17 +67,17 @@ describe "Categories admin", type: :feature do
 
     describe "add a category with title for secondary locale" do
 
-      let(:ru_category_title) { 'категория' }
+      let(:it_category_title) { 'Categoria di Prova' }
 
       before do
         visit refinery.blog_admin_posts_path
         click_link "Create new category"
         within "#switch_locale_picker" do
-          click_link "ru"
+          click_link "it"
         end
-        fill_in "Title", :with => ru_category_title
+        fill_in "Title", :with => it_category_title
         click_button "Save"
-        @c = Refinery::Blog::Category.find_by_title(ru_category_title)
+        @c = Refinery::Blog::Category.find_by_title(it_category_title)
       end
 
       it "suceeds" do
@@ -88,7 +88,7 @@ describe "Categories admin", type: :feature do
       it "shows locale flag for category" do
         click_link "Manage"
         within "#category_#{@c.id}" do
-          page.should have_css("img[src='/assets/refinery/icons/flags/ru.png']")
+          page.should have_css("img[src='/assets/refinery/icons/flags/it.png']")
         end
       end
 
@@ -105,7 +105,7 @@ describe "Categories admin", type: :feature do
       end
 
       it "shows up in blog page for secondary locale" do
-        visit refinery.blog_root_path(:locale => :ru)
+        visit refinery.blog_root_path(:locale => :it)
         within "#categories" do
           page.should have_selector('li')
         end
