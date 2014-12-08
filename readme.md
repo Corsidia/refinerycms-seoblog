@@ -1,13 +1,12 @@
 # Simple SEO Blog for RefineryCMS
 
-This is a simple search engine-optimized blog with a 1-n category-posts association in order to obtain `/blog/category_slug/post_slug` posts' urls.
+This is a simple search engine-optimized blog with a 1-n category-posts association in order to obtain `/blog/category_slug/post_slug` posts' urls and no comment management included.
 This project is based on [refinerycms-blog](https://github.com/refinery/refinerycms-blog) and is still in development.
 
 This is the *edge* -and for now the only- version of `refinerycms-seoblog` and it supports only Refinery 3.x and Rails 4.1.x.
 
 <!-- Options:
 
-* Comment moderation
 * [ShareThis.com](http://sharethis.com) support on posts. To enable, set your key in Refinery's settings area. -->
 
 ## Requirements
