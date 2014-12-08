@@ -10,7 +10,7 @@ module Refinery
       end
 
       it "should display blog post" do
-        visit refinery.blog_post_path(blog_post)
+        visit refinery.blog_post_path(blog_post.category, blog_post)
 
         page.should have_content(blog_post.title)
       end
@@ -94,7 +94,7 @@ module Refinery
 
       context "when logged in as admin" do
         it "should display the draft notification" do
-          visit refinery.blog_post_path(blog_post)
+          visit refinery.blog_post_path(blog_post.category, blog_post)
 
           page.should have_content('This page is NOT live for public viewing.')
         end
@@ -109,7 +109,7 @@ module Refinery
         end
 
         it "should not display the blog post" do
-          visit refinery.blog_post_path(blog_post)
+          visit refinery.blog_post_path(blog_post.category, blog_post)
 
           page.should have_content("The page you requested was not found.")
         end

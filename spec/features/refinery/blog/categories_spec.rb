@@ -6,13 +6,12 @@ module Refinery
 
     context "has one category and post" do
       before do
-        post = Globalize.with_locale(:en) do
-          FactoryGirl.create(:blog_post, :title => "Refinery CMS blog post")
-        end
         @category = Globalize.with_locale(:en) do
           FactoryGirl.create(:blog_category, :title => "Video Games")
         end
-        post.categories << @category
+        post = Globalize.with_locale(:en) do
+          FactoryGirl.create(:blog_post, :title => "Refinery CMS blog post", category: @category)
+        end
         post.save!
       end
 

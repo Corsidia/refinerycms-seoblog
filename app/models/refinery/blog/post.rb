@@ -117,12 +117,6 @@ module Refinery
           newest_first.published_before(item.published_at).first
         end
 
-        def uncategorized
-          newest_first.live.includes(:categories).where(
-            Refinery::Blog::Categorization.table_name => { :blog_category_id => nil }
-          )
-        end
-
         def next(current_record)
           where(arel_table[:published_at].gt(current_record.published_at))
             .where(:draft => false)

@@ -7,7 +7,7 @@ module Refinery
         let(:tags) { helper.find_tags }
 
         context "with draft posts" do
-          let!(:blog_post) { FactoryGirl.create(:blog_post, :draft => true, :tag_list => "first, second" ) }
+          let!(:blog_post) { FactoryGirl.create(:blog_post, :draft => true, :tag_list => "first, second") }
 
           it "does not return tags" do
             expect(tags).to be_empty
