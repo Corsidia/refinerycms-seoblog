@@ -12,7 +12,7 @@ module Refinery
       it "should display blog post" do
         visit refinery.blog_post_path(blog_post.category, blog_post)
 
-        page.should have_content(blog_post.title)
+        expect(page).to have_content(blog_post.title)
       end
 
       describe "visit blog" do
@@ -25,14 +25,14 @@ module Refinery
         it "shows blog link in menu" do
           visit "/"
           within "#menu" do
-            page.should have_content("Blog")
-            page.should have_selector("a[href='/blog']")
+            expect(page).to have_content("Blog")
+            expect(page).to have_selector("a[href='/blog']")
           end
         end
 
         it "shows blog posts" do
           visit refinery.blog_root_path
-          page.should have_content blog_post.title
+          expect(page).to have_content blog_post.title
         end
 
       end
@@ -51,8 +51,8 @@ module Refinery
         it "should have one tagged post" do
           visit refinery.blog_tagged_posts_path(@tag.id, @tag_name.parameterize)
 
-          page.should have_content(@tag_name)
-          page.should have_content(@post.title)
+          expect(page).to have_content(@tag_name)
+          expect(page).to have_content(@post.title)
         end
       end
     end
@@ -68,13 +68,13 @@ module Refinery
         end
 
         it "should increment access count" do
-          blog_post.reload.access_count.should eq(1)
+          expect(blog_post.reload.access_count).to eq(1)
           visit refinery.blog_post_path(blog_post.category, blog_post)
-          blog_post.reload.access_count.should eq(2)
+          expect(blog_post.reload.access_count).to eq(2)
         end
 
         it "should be most popular" do
-          Refinery::Blog::Post.popular(2).first.should eq(blog_post)
+          expect(Refinery::Blog::Post.popular(2).first).to eq(blog_post)
         end
       end
 
@@ -83,7 +83,7 @@ module Refinery
         let!(:blog_post2) { FactoryGirl.create(:blog_post, :published_at => Time.now - 2.minutes) }
 
         it "should be the most recent" do
-          Refinery::Blog::Post.recent(2).first.id.should eq(blog_post2.id)
+          expect(Refinery::Blog::Post.recent(2).first.id).to eq(blog_post2.id)
         end
       end
 
@@ -96,7 +96,7 @@ module Refinery
         it "should display the draft notification" do
           visit refinery.blog_post_path(blog_post.category, blog_post)
 
-          page.should have_content('This page is NOT live for public viewing.')
+          expect(page).to have_content('This page is NOT live for public viewing.')
         end
       end
 
@@ -111,7 +111,7 @@ module Refinery
         it "should not display the blog post" do
           visit refinery.blog_post_path(blog_post.category, blog_post)
 
-          page.should have_content("The page you requested was not found.")
+          expect(page).to have_content("The page you requested was not found.")
         end
       end
     end

@@ -41,9 +41,7 @@ The version of Refinery to develop this engine against is defined in the gemspec
 
 ### Testing
 
-The tests (specs) are being updated...
-
-<!-- Generate the dummy application to test against
+Generate the dummy application to test against
 
     $ bundle exec rake refinery:testing:dummy_app
 
@@ -53,7 +51,7 @@ Run the test suite with [Guard](https://github.com/guard/guard)
 
 Or just with rake spec
 
-    $ bundle exec rake spec -->
+    $ bundle exec rake spec
 
 ## Additional Features
 * To limit rss feed length, use the 'max_results' parameter
