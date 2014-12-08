@@ -41,10 +41,6 @@
                   :class => 'settings_icon' %>
     </li>
     <li>
-      <%= link_to t('.settings.moderation'), refinery.moderation_blog_admin_settings_path,
-                  :class => "#{Refinery::Blog::Comment::Moderation.enabled? ? 'success' : 'failure'}_icon" %>
-    </li>
-    <li>
       <%= link_to t('.settings.update_notified'),
                   refinery.notification_recipients_blog_admin_settings_path(:dialog => true, :height => 400),
                   :class => 'user_comment_icon' %>
