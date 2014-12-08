@@ -58,79 +58,18 @@ module Refinery
     end
 
     describe "#show" do
-      context "when has no comments" do
-        let(:blog_post) { FactoryGirl.create(:blog_post) }
-
-        it "should display the blog post" do
-          visit refinery.blog_post_path(blog_post)
-          page.should have_content(blog_post.title)
-          page.should have_content(blog_post.body)
-        end
-      end
-      context "when has approved comments" do
-        let(:approved_comment) { FactoryGirl.create(:approved_comment) }
-
-        it "should display the comments" do
-          visit refinery.blog_post_path(approved_comment.post)
-
-          page.should have_content(approved_comment.body)
-          page.should have_content("Posted by #{approved_comment.name}")
-        end
-      end
-      context "when has rejected comments" do
-        let(:rejected_comment) { FactoryGirl.create(:rejected_comment) }
-
-        it "should not display the comments" do
-          visit refinery.blog_post_path(rejected_comment.post)
-
-          page.should_not have_content(rejected_comment.body)
-        end
-      end
-      context "when has new comments" do
-        let(:blog_comment) { FactoryGirl.create(:blog_comment) }
-
-        it "should not display the comments" do
-          visit refinery.blog_post_path(blog_comment.post)
-
-          page.should_not have_content(blog_comment.body)
-        end
-      end
-
-      context "when posting comments" do
-        let(:blog_post) { FactoryGirl.create(:blog_post) }
-        let(:name) { "pete" }
-        let(:email) { "pete@mcawesome.com" }
-        let(:body) { "Witty comment." }
-
-        before do
-          visit refinery.blog_post_path(blog_post)
-
-          fill_in "Name", :with => name
-          fill_in "Email", :with => email
-          fill_in "Message", :with => body
-          click_button "Send comment"
-        end
-
-        it "creates the comment" do
-          comment = blog_post.reload.comments.last
-
-          comment.name.should eq(name)
-          comment.email.should eq(email)
-          comment.body.should eq(body)
-        end
-      end
 
       context "post popular" do
         let(:blog_post) { FactoryGirl.create(:blog_post) }
         let(:blog_post2) { FactoryGirl.create(:blog_post) }
 
         before do
-          visit refinery.blog_post_path(blog_post)
+          visit refinery.blog_post_path(blog_post.category, blog_post)
         end
 
         it "should increment access count" do
           blog_post.reload.access_count.should eq(1)
-          visit refinery.blog_post_path(blog_post)
+          visit refinery.blog_post_path(blog_post.category, blog_post)
           blog_post.reload.access_count.should eq(2)
         end
 

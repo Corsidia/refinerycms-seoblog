@@ -17,24 +17,15 @@ module Refinery
         it "requires body" do
           FactoryGirl.build(:blog_post, :body => nil).should_not be_valid
         end
-      end
 
-      describe "comments association" do
-
-        it "have a comments attribute" do
-          post.should respond_to(:comments)
-        end
-
-        it "destroys associated comments" do
-          FactoryGirl.create(:blog_comment, :blog_post_id => post.id)
-          post.destroy
-          Blog::Comment.where(:blog_post_id => post.id).should be_empty
+        it "won't allow uncategorized posts" do
+          expect(FactoryGirl.build(:blog_post, :category => nil)).not_to be_valid
         end
       end
 
       describe "categories association" do
-        it "have categories attribute" do
-          post.should respond_to(:categories)
+        it "have category attribute" do
+          post.should respond_to(:category)
         end
       end
 
@@ -102,20 +93,6 @@ module Refinery
         end
       end
 
-      describe "uncategorized" do
-        before do
-          @uncategorized_post = FactoryGirl.create(:blog_post)
-          @categorized_post = FactoryGirl.create(:blog_post)
-
-          @categorized_post.categories << FactoryGirl.create(:blog_category)
-        end
-
-        it "returns uncategorized posts if they exist" do
-          described_class.uncategorized.should include @uncategorized_post
-          described_class.uncategorized.should_not include @categorized_post
-        end
-      end
-
       describe "#live?" do
         it "returns true if post is not in draft and it's published" do
           FactoryGirl.build(:blog_post).should be_live
@@ -149,28 +126,6 @@ module Refinery
 
         it "returns previous article when called on current article" do
           described_class.first.prev.should == @post
-        end
-      end
-
-      describe ".comments_allowed?" do
-        context "with Refinery::Setting comments_allowed set to true" do
-          before do
-            Refinery::Setting.set(:comments_allowed, { :scoping => 'blog', :value => true })
-          end
-
-          it "should be true" do
-            described_class.comments_allowed?.should be_truthy
-          end
-        end
-
-        context "with Refinery::Setting comments_allowed set to false" do
-          before do
-            Refinery::Setting.set(:comments_allowed, { :scoping => 'blog', :value => false })
-          end
-
-          it "should be false" do
-            described_class.comments_allowed?.should be_falsey
-          end
         end
       end
 

@@ -12,10 +12,6 @@ module Refinery
 
         before_filter :check_category_ids, :only => :update
 
-        def uncategorized
-          @posts = Refinery::Blog::Post.uncategorized.page(params[:page])
-        end
-
         def tags
           if ActiveRecord::Base.connection.adapter_name.downcase == 'postgresql'
             op = '~*'

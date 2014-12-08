@@ -137,13 +137,6 @@ module Refinery
             end
           end
 
-          context "when uncategorized post" do
-            it "shows up in the list" do
-              visit refinery.uncategorized_blog_admin_posts_path
-              page.should have_content(blog_post.title)
-            end
-          end
-
           context "when categorized post" do
             it "won't show up in the list" do
               blog_post.categories << blog_category

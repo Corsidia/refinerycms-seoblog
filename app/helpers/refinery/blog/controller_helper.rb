@@ -15,7 +15,7 @@ module Refinery
         end
 
         def find_all_blog_posts
-          @posts = Refinery::Blog::Post.live.includes(:comments, :category).with_globalize.newest_first.page(params[:page])
+          @posts = Refinery::Blog::Post.live.includes(:category).with_globalize.newest_first.page(params[:page])
         end
 
         def find_tags

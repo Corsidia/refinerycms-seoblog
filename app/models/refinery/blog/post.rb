@@ -17,9 +17,6 @@ module Refinery
       belongs_to :author, proc { readonly(true) }, :class_name => Refinery::Blog.user_class.to_s, :foreign_key => :user_id
       belongs_to :category, :class_name => 'Refinery::Blog::Category', :foreign_key => :blog_category_id, inverse_of: :posts
 
-      has_many :comments, :dependent => :destroy, :foreign_key => :blog_post_id
-
-
       validates :title, :presence => true, :uniqueness => true
       validates :body,  :presence => true
       validates :category, :presence => true
@@ -138,10 +135,6 @@ module Refinery
             .with_globalize
         end
         alias_method :live, :published_before
-
-        def comments_allowed?
-          Refinery::Setting.find_or_set(:comments_allowed, true, :scoping => 'blog')
-        end
 
         def teasers_enabled?
           Refinery::Setting.find_or_set(:teasers_enabled, true, :scoping => 'blog')

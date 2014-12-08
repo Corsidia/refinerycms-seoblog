@@ -3,7 +3,7 @@ module Refinery
     class PostsController < BlogController
 
       before_action :find_all_blog_posts, :except => [:archive]
-      before_action :find_blog_post, :only => [:show, :comment, :update_nav]
+      before_action :find_blog_post, :only => [:show, :update_nav]
       before_action :find_tags
 
       respond_to :html, :js, :rss
@@ -14,7 +14,7 @@ module Refinery
             # limit rss feed for services (like feedburner) who have max size
             Post.recent(params["max_results"])
           else
-            Post.newest_first.live.includes(:comments, :categories)
+            Post.newest_first.live.includes(:category)
           end
         end
         respond_with (@posts) do |format|
@@ -24,39 +24,12 @@ module Refinery
       end
 
       def show
-        @comment = Comment.new
-
         @canonical = refinery.url_for(:locale => Refinery::I18n.current_frontend_locale) if canonical?
-
         @post.increment!(:access_count, 1)
 
         respond_with (@post) do |format|
           format.html { present(@post) }
           format.js { render :partial => 'post', :layout => false }
-        end
-      end
-
-      def comment
-        @comment = @post.comments.create(comment_params)
-        if @comment.valid?
-          if Comment::Moderation.enabled? or @comment.ham?
-            begin
-              CommentMailer.notification(@comment, request).deliver
-            rescue
-              logger.warn "There was an error delivering a blog comment notification.\n#{$!}\n"
-            end
-          end
-
-          if Comment::Moderation.enabled?
-            flash[:notice] = t('thank_you_moderated', :scope => 'refinery.blog.posts.comments')
-            redirect_to refinery.blog_post_url(@post.category, @post)
-          else
-            flash[:notice] = t('thank_you', :scope => 'refinery.blog.posts.comments')
-            redirect_to refinery.blog_post_url(@post.category, @post,
-                                      :anchor => "comment-#{@comment.to_param}")
-          end
-        else
-          render :show
         end
       end
 
@@ -82,10 +55,6 @@ module Refinery
       end
 
     private
-
-      def comment_params
-        params.require(:comment).permit(:name, :email, :message)
-      end
 
     protected
       def canonical?

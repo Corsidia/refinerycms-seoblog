@@ -29,16 +29,6 @@ module Refinery
           end
         end
 
-        def comments
-          enabled = Refinery::Blog::Comment.toggle!
-          unless request.xhr?
-            redirect_back_or_default(refinery.blog_admin_posts_path)
-          else
-            render :json => {:enabled => enabled},
-                   :layout => false
-          end
-        end
-
         def teasers
           enabled = Refinery::Blog::Post.teaser_enabled_toggle!
           unless request.xhr?

@@ -15,19 +15,6 @@ class CreateBlogStructure < ActiveRecord::Migration
     add_index :refinery_blog_posts, :blog_category_id
     add_index :refinery_blog_posts, :user_id
 
-    create_table :refinery_blog_comments do |t|
-      t.integer :blog_post_id
-      t.boolean :spam
-      t.string :name
-      t.string :email
-      t.text :body
-      t.string :state
-      t.timestamps
-    end
-
-    add_index :refinery_blog_comments, :id
-    add_index :refinery_blog_comments, :blog_post_id
-
     create_table :refinery_blog_categories do |t|
       t.string :title
       t.timestamps
@@ -42,7 +29,6 @@ class CreateBlogStructure < ActiveRecord::Migration
     Refinery::Page.delete_all({:link_url => "/blog"}) if defined?(Refinery::Page)
 
     drop_table :refinery_blog_posts
-    drop_table :refinery_blog_comments
     drop_table :refinery_blog_categories
   end
 
