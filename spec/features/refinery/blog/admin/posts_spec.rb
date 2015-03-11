@@ -46,6 +46,7 @@ module Refinery
                 # hidden and capybara refuses to fill in elements it can't see
                 page.evaluate_script("WYMeditor.INSTANCES[0].html('<p>And I love it</p>')")
                 click_link "toggle_advanced_options"
+                have_select('post[blog_category_id]', options: [ blog_category.title ])
                 select blog_category.title
 
                 click_button "Save"
