@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-seoblog}
-  s.version           = %q{3.0.1}
+  s.version           = %q{3.0.2}
   s.description       = %q{Simple open source Ruby on Rails Blog engine designed for integration with Refinery CMS.}
   s.summary           = %q{SEO-oriented Ruby on Rails blogging engine for Refinery CMS.}
   # s.email             = %q{info@refinerycms.com}
