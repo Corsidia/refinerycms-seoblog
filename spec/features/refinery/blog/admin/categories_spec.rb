@@ -44,10 +44,10 @@ describe "Categories admin", type: :feature do
         expect(Refinery::Blog::Category.count).to eq(1)
       end
 
-      it "shows locale flag for category" do
+      it "shows locale for category" do
         click_link "Manage"
         within "#category_#{@c.id}" do
-          expect(page).to have_css("img[src='/assets/refinery/icons/flags/en.png']")
+          expect(page).to have_css(".locale_icon.en")
         end
       end
 
@@ -73,7 +73,7 @@ describe "Categories admin", type: :feature do
         visit refinery.blog_admin_posts_path
         click_link "Create new category"
         within "#switch_locale_picker" do
-          click_link "it"
+          click_link "IT"
         end
         fill_in "Title", :with => it_category_title
         click_button "Save"
@@ -88,14 +88,14 @@ describe "Categories admin", type: :feature do
       it "shows locale flag for category" do
         click_link "Manage"
         within "#category_#{@c.id}" do
-          expect(page).to have_css("img[src='/assets/refinery/icons/flags/it.png']")
+          expect(page).to have_css(".locale_icon.it")
         end
       end
 
       it "does not show locale flag for primary locale" do
         click_link "Manage"
         within "#category_#{@c.id}" do
-          expect(page).not_to have_css("img[src='/assets/refinery/icons/flags/en.png']")
+          expect(page).not_to have_css(".locale_icon.en")
         end
       end
 
