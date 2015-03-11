@@ -1,5 +1,5 @@
 # encoding: utf-8
-require "spec_helper"
+require 'spec_helper'
 
 module Refinery
   module Blog
@@ -34,7 +34,7 @@ module Refinery
 
             it "should have category title", :js => true do
               click_link "toggle_advanced_options"
-              expect(page).to have_content(blog_category.title)
+              expect(page).to have_select('post[blog_category_id]', options: [ blog_category.title ])
             end
 
             describe "create blog post", :js => true do
@@ -180,7 +180,7 @@ module Refinery
               fill_in "Title", :with => "Post"
               fill_in "post_body", :with => "One post in my blog"
               click_button "Save"
-              @p = Refinery::Blog::Post.find_by_title("Post")
+              @p = Refinery::Blog::Post.by_title("Post")
             end
 
             it "succeeds" do
@@ -219,7 +219,7 @@ module Refinery
               fill_in "Title", :with => it_page_title
               fill_in "post_body", :with => "One post in my blog"
               click_button "Save"
-              @p = Refinery::Blog::Post.find_by_title(it_page_title)
+              @p = Refinery::Blog::Post.by_title(it_page_title)
             end
 
             it "succeeds" do

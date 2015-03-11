@@ -8,7 +8,7 @@ class CreateBlogStructure < ActiveRecord::Migration
       t.text :body
       t.boolean :draft
       t.datetime :published_at
-      t.timestamps
+      t.timestamps null: false
     end
 
     add_index :refinery_blog_posts, :id
@@ -17,7 +17,7 @@ class CreateBlogStructure < ActiveRecord::Migration
 
     create_table :refinery_blog_categories do |t|
       t.string :title
-      t.timestamps
+      t.timestamps null: false
     end
 
     add_index :refinery_blog_categories, :id

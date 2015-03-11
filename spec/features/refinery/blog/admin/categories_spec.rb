@@ -24,7 +24,7 @@ describe "Categories admin", type: :feature do
       allow(Refinery::I18n).to receive(:frontend_locales).and_return([:en, :it])
       blog_page = Globalize.with_locale(:en) { FactoryGirl.create(:page, :link_url => "/blog", :title => "Blog") }
       Globalize.with_locale(:it) do
-        blog_page.title = 'блог'
+        blog_page.title = 'Titolo Italiano'
         blog_page.save
       end
     end
@@ -35,8 +35,8 @@ describe "Categories admin", type: :feature do
         visit refinery.blog_admin_posts_path
         click_link "Create new category"
         fill_in "Title", :with => "Testing Category"
-        click_button "Save"
-        @c = Refinery::Blog::Category.find_by_title("Testing Category")
+        expect { click_button "Save" }.to change(Refinery::Blog::Category, :count).by(1)
+        @c = Refinery::Blog::Category.by_title("Testing Category")
       end
 
       it "suceeds" do
@@ -77,7 +77,7 @@ describe "Categories admin", type: :feature do
         end
         fill_in "Title", :with => it_category_title
         click_button "Save"
-        @c = Refinery::Blog::Category.find_by_title(it_category_title)
+        @c = Refinery::Blog::Category.by_title(it_category_title)
       end
 
       it "suceeds" do
