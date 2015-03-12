@@ -107,6 +107,7 @@ it:
           singular: commento
           plural: commenti
           none: nessun commento
+        archives: Archivio
         tags:
           title: "Tags"
       categories:
