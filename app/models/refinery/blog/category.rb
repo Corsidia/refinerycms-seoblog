@@ -12,6 +12,11 @@ module Refinery
       validates :title, :presence => true, :uniqueness => true
       validates :slug, :presence => true
 
+      # we want to regenerate the slug on title update
+      def should_generate_new_friendly_id?
+        true
+      end
+
       def self.by_title(title)
         joins(:translations).find_by(title: title)
       end
