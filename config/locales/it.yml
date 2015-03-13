@@ -116,6 +116,8 @@ it:
       posts:
         post:
           filled_in: Archiviato in
+        show:
+          blog_home: Blog Home
         comment: commento
         comments:
           by: 'Pubblicato da %{who}'
