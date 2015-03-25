@@ -10,7 +10,7 @@ xml.rss :version => "2.0" do
         xml.title post.title
         xml.description post.body
         xml.pubDate post.published_at.to_s(:rfc822)
-        xml.link refinery.blog_post_url(post)
+        xml.link refinery.blog_post_url(post.category, post)
       end
     end
   end
