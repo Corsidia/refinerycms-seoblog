@@ -116,8 +116,6 @@ it:
       posts:
         post:
           filled_in: Archiviato in
-        show:
-          blog_home: Blog Home
         comment: commento
         comments:
           by: 'Pubblicato da %{who}'
@@ -127,6 +125,7 @@ it:
         index:
           no_blog_articles_yet: Non sono stati ancora pubblicati articoli nel blog. Continuate a seguirci.
         show:
+          blog_home: Blog Home
           comments:
             title: Commenti
             add: Scrivi un Commento
