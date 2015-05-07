@@ -123,7 +123,7 @@ it:
           thank_you: 'Grazie per aver scritto un commento.'
           thank_you_moderated: 'Grazie per aver scritto un commento. Il tuo messaggio è stato inserito nella coda di moderazione e sarà visibile a breve.'
         index:
-          no_blog_articles_yet: Non sono stati ancora pubblicati articoli nel blog. Continuate a seguirci.
+          no_blog_articles_yet: Non sono stati ancora pubblicati articoli nel blog. Continua a seguirci.
         show:
           blog_home: Blog Home
           comments:
@@ -138,7 +138,7 @@ it:
           message: Articolo
           by: da
         tagged:
-          no_blog_articles_yet: Non sono stati ancora pubblicati articoli nel blog. Continuate a seguirci.
+          no_blog_articles_yet: Non sono stati ancora pubblicati articoli nel blog. Continua a seguirci.
           posts_tagged: Articoli taggati
         archive:
           blog_archive_for: 'Articoli pubblicati il %{date}'
