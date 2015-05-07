@@ -46,6 +46,7 @@ module Refinery
                 # hidden and capybara refuses to fill in elements it can't see
                 page.evaluate_script("WYMeditor.INSTANCES[0].html('<p>And I love it</p>')")
                 click_link "toggle_advanced_options"
+                sleep 1
                 have_select('post[blog_category_id]', options: [ blog_category.title ])
                 select blog_category.title
 
@@ -145,12 +146,12 @@ module Refinery
               click_link "Create new post"
 
               fill_in "post_title", :with => "This is some other guy's blog post"
-              # this is a dpage_titleirty hack but textarea that needs to be filled is
+              # this is a dirty hack but textarea that needs to be filled is
               # hidden and capybara refuses to fill in elements it can't see
               page.evaluate_script("WYMeditor.INSTANCES[0].html('<p>I totally did not write it.</p>')")
 
               click_link "toggle_advanced_options"
-
+              expect(page).to have_content("Author")
               select other_guy.username, :from => "Author"
 
               click_button "Save"
