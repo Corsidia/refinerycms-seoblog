@@ -43,6 +43,7 @@ it:
             custom_url_help: Puoi scegliere un url specifico per questo articolo. Lasciando questo campo vuoto verrà utilizzato il titolo.
             copy_body: Copia il testo dell'articolo nel teaser
             copy_body_help: Lascia il teaser bianco per creare il teaser automaticamente.
+            sticky: In Evidenza
           index:
             no_items_yet: 'Non ci sono ancora articoli in questo Blog. Clicca su "%{create}" per aggiungerne uno.'
           uncategorized:
@@ -51,6 +52,8 @@ it:
             view_live_html: 'Visualizza questo articolo sul sito <br/><em>(si aprirà in una nuova finestra)</em>'
             edit: Modifica questo articolo
             delete: Rimuovi questo articolo per sempre
+            draft: Bozza
+            sticky: In Evidenza
         settings:
           notification_recipients:
             value: Inviare notifiche a

@@ -56,6 +56,11 @@
     <%= f.text_field :tag_list, value: @post.tag_list.to_s, :class => 'larger' -%>
   </div>
 
+  <span id="draft_field">
+      <%= f.check_box :sticky %>
+      <%= f.label :sticky, t('.sticky'),
+                  :class => 'stripped' %>
+  </span>
 
 
   <div id='more_options' style="display:none;">

@@ -48,6 +48,7 @@ en:
             author: Author
             author_help: Set which user this post will show as the author.
             copy_body: Copy Post Body to Teaser
+            sticky: Sticky
             copy_body_help: Copies the post body to the teaser.  Leave teaser blank to let Refinery automatically make the teaser.
           index:
             no_items_yet: 'There are no Blog Posts yet. Click "%{create}" to add your first blog post.'
@@ -58,6 +59,7 @@ en:
             edit: Edit this blog post
             delete: Remove this blog post forever
             draft: Draft
+            sticky: Sticky
         settings:
           notification_recipients:
             value: Send notifications to

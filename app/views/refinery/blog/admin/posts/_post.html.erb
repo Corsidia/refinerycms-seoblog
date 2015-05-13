@@ -19,6 +19,9 @@
       <% else %>
         <%= post.published_at.strftime('%b %d, %Y') %>
       <% end %>
+      <% if post.sticky? %>
+        <span class="label warning"><%= t('refinery.blog.admin.posts.post.sticky') %></span>
+      <% end %>
     </span>
   </span>
   <span class='actions'>

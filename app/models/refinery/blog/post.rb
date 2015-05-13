@@ -134,6 +134,10 @@ module Refinery
         end
         alias_method :live, :published_before
 
+        def sticky
+          where(:sticky => true).live
+        end
+
         def teasers_enabled?
           Refinery::Setting.find_or_set(:teasers_enabled, true, :scoping => 'blog')
         end

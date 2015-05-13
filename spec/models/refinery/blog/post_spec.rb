@@ -107,6 +107,29 @@ module Refinery
         end
       end
 
+      describe "sticky" do
+        before do
+          @post1 = FactoryGirl.create(:blog_post_sticky, :published_at => Time.now.advance(:minutes => -2))
+          @post2 = FactoryGirl.create(:blog_post_sticky, :published_at => Time.now.advance(:minutes => -1))
+          FactoryGirl.create(:blog_post, :draft => true, :sticky => true)
+          FactoryGirl.create(:blog_post, :published_at => Time.now + 1.minute, :sticky => true)
+        end
+
+        it "returns all posts which are sticky but aren't in draft and pub date isn't in future" do
+          live_posts = described_class.live
+          expect(live_posts.count).to eq(2)
+          expect(live_posts).to include(@post2)
+          expect(live_posts).to include(@post1)
+        end
+      end
+
+      describe "#sticky?" do
+        it "returns true if post is not in draft, it's published and it's sticky" do
+          expect(FactoryGirl.build(:blog_post)).not_to be_sticky
+          expect(FactoryGirl.build(:blog_post_sticky)).to be_sticky
+        end
+      end
+
       describe "#next" do
         before do
           FactoryGirl.create(:blog_post, :published_at => Time.now.advance(:days => -1))
