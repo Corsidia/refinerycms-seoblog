@@ -2,7 +2,7 @@ Refinery::Core::Engine.routes.draw do
   namespace :blog, :path => Refinery::Blog.page_url do
     root :to => "posts#index"
 
-    get 'categories/:slug', :to => 'categories#show', :as => 'category'
+    get ':slug', :to => 'categories#show', :as => 'category'
     get ':category_slug/:slug', :to => 'posts#show', :as => 'post'
     get 'feed.rss', :to => 'posts#index', :as => 'rss_feed', :defaults => {:format => "rss"}
     get 'archive/:year(/:month)', :to => 'posts#archive', :as => 'archive_posts'

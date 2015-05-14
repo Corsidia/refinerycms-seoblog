@@ -4,7 +4,8 @@ This project is the search engine-optimized version of [refinerycms-blog](https:
 
 Main SEO optimizations:
 
-* 1-n category-posts association in order to obtain `/blog/category_slug/post_slug` post urls.
+* `/blog/:category_slug/:post_slug` post urls (with a 1-n association between category and posts);
+* `/blog/:category_slug` category urls;
 * sticky posts
 
 This is the *edge* -and for now the only- version of `refinerycms-seoblog` and it supports only Refinery 3.x and Rails 4.1.x. But it works!
