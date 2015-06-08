@@ -4,7 +4,7 @@ module Refinery
 
       def show
         @category = Refinery::Blog::Category.friendly.find(params[:slug])
-        @posts = @category.posts.live.includes(:category).with_globalize.page(params[:page])
+        @posts = @category.posts.live.newest_first.includes(:category).with_globalize.page(params[:page])
       end
 
     end
