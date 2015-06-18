@@ -2,7 +2,7 @@ require "spec_helper"
 module Refinery
   module Blog
 
-    describe "/blog/:slug", :type => :routing, focus: true do
+    describe "/blog/:slug", :type => :routing do
       routes { Refinery::Core::Engine.routes }
 
       it "is routed to a category" do
