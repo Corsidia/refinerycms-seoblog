@@ -41,18 +41,20 @@ module Refinery
 
     describe "list tagged posts" do
       context "when has tagged blog posts" do
-        before do
-          @tag_name = "chicago"
-          @post = FactoryGirl.create(:blog_post,
-                                          :title => "I Love my city",
-                                          :tag_list => @tag_name)
-          @tag = ::Refinery::Blog::Post.tag_counts_on(:tags).first
-        end
-        it "should have one tagged post" do
-          visit refinery.blog_tagged_posts_path(@tag.id, @tag_name.parameterize)
+        let!(:tag_name) { "chicago" }
+        let!(:post) {
+          FactoryGirl.create(:blog_post,
+          :title => "I Love my city",
+          :tag_list => tag_name
+          )
+        }
+        let!(:tag) { ::Refinery::Blog::Post.tag_counts_on(:tags).first }
 
-          expect(page).to have_content(@tag_name)
-          expect(page).to have_content(@post.title)
+        it "should have one tagged post" do
+          visit refinery.blog_tagged_posts_path(tag.id, tag_name.parameterize)
+
+          expect(page).to have_content(tag_name)
+          expect(page).to have_content(post.title)
         end
       end
     end
@@ -60,8 +62,8 @@ module Refinery
     describe "#show" do
 
       context "post popular" do
-        let(:blog_post) { FactoryGirl.create(:blog_post) }
-        let(:blog_post2) { FactoryGirl.create(:blog_post) }
+        let!(:blog_post) { FactoryGirl.create(:blog_post) }
+        let!(:blog_post2) { FactoryGirl.create(:blog_post) }
 
         before do
           visit refinery.blog_post_path(blog_post.category, blog_post)
@@ -90,7 +92,7 @@ module Refinery
     end
 
     describe "#show draft preview" do
-      let(:blog_post) { FactoryGirl.create(:blog_post_draft) }
+      let!(:blog_post) { FactoryGirl.create(:blog_post_draft) }
 
       context "when logged in as admin" do
         it "should display the draft notification" do

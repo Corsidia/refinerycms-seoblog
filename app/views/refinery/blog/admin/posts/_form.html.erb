@@ -40,8 +40,6 @@
     </div>
   </div>
 
-  <%= render '/refinery/admin/form_advanced_options_menu', :f => f %>
-
   <div class='field'>
     <span class='label_with_help'>
       <%= f.label :category, t('.category') %>
@@ -63,7 +61,9 @@
   </span>
 
 
-  <div id='more_options' style="display:none;">
+  <%= render '/refinery/admin/form_advanced_options_menu', :f => f %>
+
+  <div id='more_options'>
     <div class="hemisquare">
 
       <h3><%= t('.published_at') %></h3>
