@@ -52,6 +52,9 @@ it:
             view_live_html: 'Visualizza questo articolo sul sito <br/><em>(si aprirà in una nuova finestra)</em>'
             edit: Modifica questo articolo
             delete: Rimuovi questo articolo per sempre
+            delete_translation: Rimuovi questa traduzione
+            delete_translation_confirmation: Confermi di voler cancellare questa traduzione?
+            delete_translation_success: La traduzione è stata rimossa con successo.
             draft: Bozza
             sticky: In Evidenza
         settings:

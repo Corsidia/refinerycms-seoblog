@@ -18,6 +18,9 @@ Refinery::Core::Engine.routes.draw do
           collection do
             get :tags
           end
+          member do
+            post :delete_translation
+          end
         end
 
         resources :categories
