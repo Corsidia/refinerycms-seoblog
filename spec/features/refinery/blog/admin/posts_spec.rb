@@ -33,7 +33,7 @@ module Refinery
             end
 
             it "should have category title", :js => true do
-              find('#toggle_advanced_options').click
+              find('#toggle_advanced_options').trigger(:click)
               expect(page).to have_select('post[blog_category_id]', options: [ blog_category.title ])
             end
 
@@ -45,7 +45,7 @@ module Refinery
                 # this is a dirty hack but textarea that needs to be filled is
                 # hidden and capybara refuses to fill in elements it can't see
                 page.evaluate_script("WYMeditor.INSTANCES[0].html('<p>And I love it</p>')")
-                find('#toggle_advanced_options').click
+                find('#toggle_advanced_options').trigger(:click)
                 have_select('post[blog_category_id]', options: [ blog_category.title ])
                 select blog_category.title
 
@@ -150,7 +150,7 @@ module Refinery
               # hidden and capybara refuses to fill in elements it can't see
               page.evaluate_script("WYMeditor.INSTANCES[0].html('<p>I totally did not write it.</p>')")
 
-              find('#toggle_advanced_options').click
+              find('#toggle_advanced_options').trigger(:click)
               expect(page).to have_content("Author")
               select other_guy.username, :from => "Author"
 
